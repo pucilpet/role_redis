@@ -41,7 +41,7 @@ Example Playbook
   vars_files:
     - vars/main.yml
   roles:
-    - { role: role_redis }
+    - role: role_redis
 ```
 
 `vars/main.yml` :
