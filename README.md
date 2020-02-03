@@ -1,7 +1,7 @@
-Ansible Role: xxx
+Ansible Role: redis
 =========
 
-在CentOS或者Ubuntu服务器上安装和配置xxxx 或xxx
+在CentOS或者Ubuntu服务器上安装和配置 redis
 
 Requirements
 ------------
@@ -11,7 +11,7 @@ Requirements
 ```
 - hosts: all
   roles:
-    - role: role_xxx
+    - role: role_redis
       become: yes
 ```
 
@@ -21,11 +21,10 @@ Role Variables
 下面列出了可用变量和默认值(请参见"defaults/main.yml"):
 
 ```
-
-
+redis_version: stable 
 
 ```
-
+> redis_version 版本较多具体浏览http://download.redis.io/releases/查看
 
 
 Dependencies
@@ -42,12 +41,12 @@ Example Playbook
   vars_files:
     - vars/main.yml
   roles:
-    - { role: role_xxx }
+    - { role: role_redis }
 ```
 
 `vars/main.yml` :
 ```
-
+redis_version: 4.0.14
 
 
 ```
