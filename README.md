@@ -24,7 +24,7 @@ Role Variables
 redis_version: stable 
 
 ```
-> redis_version 版本较多具体浏览http://download.redis.io/releases/查看
+> redis_version 版本较多具体浏览[http://download.redis.io/releases/](http://download.redis.io/releases/) 查看
 
 
 Dependencies
