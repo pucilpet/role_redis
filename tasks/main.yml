@@ -57,7 +57,6 @@
     dest: '{{item.dest}}'
     state: link
   with_items:
-    - {src:  /var/log/redis.log,dest: /data/logs/redis.log} 
     - {src:  /etc/redis,dest: /data/config/redis} 
     - {src:  /etc/redis/redis.conf,dest: /etc/redis.conf} 
     - {src: /data/redis,dest: /var/lib/redis} 
