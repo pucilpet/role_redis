@@ -12,7 +12,7 @@
 
 - name: Download Redis Source Code
   unarchive:
-    src: http://download.redis.io/releases/redis-{{redis_version}}.tar.gz
+    src: "{{redis_download_url}}/redis-{{redis_version}}.tar.gz"
     dest: /opt/
     remote_src: yes
 
