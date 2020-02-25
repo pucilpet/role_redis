@@ -33,7 +33,7 @@
   with_items:
     - /etc/redis
     - /data/redis
-    - /log/redis
+    - /var/log
 
 - name: Copy redis config
   copy:
