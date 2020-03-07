@@ -1,58 +1,55 @@
 Ansible Role: redis
 =========
 
-在CentOS或者Ubuntu服务器上安装和配置 redis
+本 Role 用于在PHP运行环境下安装 [redis](https://redis.io/)。
 
-Requirements
-------------
+## Requirements
 
-无特殊要求,此 role 需要 root 用户权限,可以在playbook全局加入 `become: yes`,或者如下调用 role:
+运行本 Role，请确认符合如下的必要条件：
 
-```
-- hosts: all
-  roles:
-    - role: role_redis
-      become: yes
-```
+| **Items**      | **Details** |
+| ------------------| ------------------|
+| Operating system | CentOS7.x Ubuntu18.04 AmazonLinux |
+| Python 版本 | Python2  |
+| Python 组件 |    |
+| Runtime |  |
 
-Role Variables
---------------
 
-下面列出了可用变量和默认值(请参见"defaults/main.yml"):
+## Related roles
 
-```
-redis_version: stable 
+本 Role 在运行时需要确保已经运行：common。以下为例：
 
 ```
-> redis_version 版本较多具体浏览[http://download.redis.io/releases/](http://download.redis.io/releases/) 查看
+roles:
+    - {role: role_common, tags: "role_common"}
+    - {role: role_redis, tags: "role_redis"}
+```
 
 
-Dependencies
-------------
+## Variables
 
-None
+本 Role 主要变量以及使用方法如下：
 
-Example Playbook
-----------------
+| **Items**      | **Details** | **Format**  | **是否初始化** |
+| ------------------| ------------------|-----|-----|
+| redis_version | [ stable ] | 字符串 | 否 |
+
+## Example
 
 ```
-- hosts: all
+- name: Redis
+  hosts: all
   become: yes
+  become_method: sudo 
   vars_files:
-    - vars/main.yml
+    - vars/main.yml 
+
   roles:
-    - role: role_redis
+    - { role: role_common }
+    - { role: role_redis }
+    ...
 ```
 
-`vars/main.yml` :
-```
-redis_version: 4.0.14
+## FAQ
 
-
-```
-
-License
--------
-
-BSD
 
