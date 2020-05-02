@@ -54,4 +54,6 @@ roles:
 
 ## FAQ
 
+#### 如何访问RedisInsight？
+RedisInsight默认仅支持：http://127.0.0.1:8001 这种方式访问，如果将 127.0.0.1 改成 服务器公网IP，RedisInsight会报错，即不支持直接的公网IP地址绑定。必须安装Nginx转发 http://127.0.0.1:8001 才可以访问。
 
