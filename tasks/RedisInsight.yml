@@ -29,9 +29,9 @@
     name: redisinsight
     state: started
     enabled: yes
- 
- - name: Set soft link for RedisInsight
-   shell: |
-     ln -sb /usr/local/redisinsight /data/redisinsight
-     ln -sb /var/log/redisinsight /data/logs/redisinsight
-     ln -sb /etc/sysconfig/redisinsight-config /data/config
+
+- name: Set soft link for RedisInsight
+  shell: |
+    ln -sb /usr/local/redisinsight /data/redisinsight
+    ln -sb /var/log/redisinsight /data/logs/redisinsight
+    ln -sb /etc/sysconfig/redisinsight-config /data/config
