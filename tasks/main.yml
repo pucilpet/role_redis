@@ -69,5 +69,5 @@
   notify: redis Version
 
 # Install RedisInsight
-- include_tasks: "{{RedisInsight}}.yml"
+- include_tasks: "RedisInsight.yml"
   when: redis_install_redisinsight
