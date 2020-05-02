@@ -31,7 +31,7 @@
     enabled: yes
  
  - name: Set soft link for RedisInsight
-   shell:
+   shell: |
      ln -sb /usr/local/redisinsight /data/redisinsight
      ln -sb /var/log/redisinsight /data/logs/redisinsight
      ln -sb /etc/sysconfig/redisinsight-config /data/config
