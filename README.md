@@ -1,7 +1,7 @@
 Ansible Role: redis
 =========
 
-本 Role 用于在PHP运行环境下安装 [redis](https://redis.io/)。
+本 Role 用于在Linux下安装 [redis](https://redis.io/) 和 [RedisInsight](https://redislabs.com/redisinsight/)。
 
 ## Requirements
 
