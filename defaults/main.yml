@@ -1,4 +1,6 @@
 # Redis version: '2.8.24', '3.0.7', '3.2.13', '4.0.14', '5.0.7', 'stable'
+# Refer to http://download.redis.io/releases to maintain Redis version
+
 redis_version: stable 
 redis_download_url: http://download.redis.io/releases
 
