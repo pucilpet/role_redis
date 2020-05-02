@@ -1,4 +1,4 @@
-- set_fact: redis_version="{{ redis_meta[redis_version].version }}"
+- set_fact: redis_version="{{ redis_version_meta[redis_version].version }}"
 
 - name: Install GCC
   yum:
