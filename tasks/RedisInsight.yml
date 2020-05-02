@@ -34,4 +34,4 @@
    shell:
      ln -sb /usr/local/redisinsight /data/redisinsight
      ln -sb /var/log/redisinsight /data/logs/redisinsight
-     ls -sb /etc/sysconfig/redisinsight-config /data/config
+     ln -sb /etc/sysconfig/redisinsight-config /data/config
