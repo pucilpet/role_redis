@@ -32,7 +32,7 @@ roles:
 
 | **Items**      | **Details** | **Format**  | **是否初始化** |
 | ------------------| ------------------|-----|-----|
-| redis_version | [ stable ] | 字符串 | 否 |
+| redis_version | [ 2.8,3.0,3.2,4.0,5.0,stable ] | 字符串 | 否 |
 | redis_install | True,False | 布尔 | 否 |
 | redis_install_redisinsight | False, True| 布尔 | 否 |
 
