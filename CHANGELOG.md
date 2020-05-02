@@ -3,6 +3,7 @@
 ## To do
 
 1. 集群研究
+2. RedisInsight版本输出
 
 ## Logs
 
