@@ -8,7 +8,7 @@ redis_version_meta:
   "3.0":
     version: '3.0.7'
   "3.2":
-    version: '3.0.7'
+    version: '3.2.13'
   "4.0":
     version: '4.0.14'
   "5.0":
