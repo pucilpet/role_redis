@@ -1,0 +1,29 @@
+- name: Create Redis insight Dir
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /usr/local/redisinsight
+    - var/log/redisinsight
+
+- name: Download Redis insight
+  get_url:
+    url: "{{ redis_redisinsight_url }}"
+    dest: /usr/local/redisinsight/redisinsight
+    mode: '0750'
+
+- name: Config Service
+  copy:
+    src: redisinsight.service 
+    dest: /usr/lib/systemd/system/redisinsight.service
+
+- name: Config redisinsight
+  template:
+    src: redisinsight-config.jinja2
+    dest: /etc/sysconfig/redisinsight-config
+
+- name: Start redisinsight
+  service:
+    name: redisinsight
+    state: started
+    enabled: yes

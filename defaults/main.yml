@@ -1,2 +1,12 @@
+# Redis
 redis_version: stable 
 redis_download_url: http://download.redis.io/releases
+
+# RedisInsight
+redis_redisinsight_url: https://downloads.redisinsight.redislabs.com/latest/redisinsight-linux64
+redis_REDISINSIGHT_PORT: 8001
+redis_REDISINSIGHT_HOST: 127.0.0.1
+
+# Install switcher, [install redis, intall RedisInsight]
+redis_install: True
+redis_install_redisinsight: False

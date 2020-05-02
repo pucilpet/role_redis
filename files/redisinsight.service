@@ -1,0 +1,13 @@
+[Unit]
+Description=redisinsight
+After=network.target
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/sysconfig/redisinsight-config
+ExecStart=/usr/local/redisinsight/redisinsight
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+
+[Install]
+WantedBy=multi-user.target
