@@ -4,7 +4,7 @@
     state: directory
   with_items:
     - /usr/local/redisinsight
-    - var/log/redisinsight
+    - /var/log/redisinsight
 
 - name: Download Redis insight
   get_url:
