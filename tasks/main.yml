@@ -59,7 +59,7 @@
     ln -sb /data/redis /var/lib/redis
 
 - name: Check redis Version
-  shell: /usr/local/bin/redis-server -v 1>> /data/logs/install_version.txt
+  shell: sudo sh -c "/usr/local/bin/redis-server -v 1>> /data/logs/install_version.txt"
 
 # Install RedisInsight
 - include_tasks: "RedisInsight.yml"
