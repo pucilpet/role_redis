@@ -54,9 +54,9 @@
 # create soft link for old documentation, ln -sb 
 - name: Create a redis symbolic link
   shell: |
-    ln -sb /etc/redis /data/config/redis
-    ln -sb /etc/redis/redis.conf /etc/redis.conf
-    ln -sb /data/redis /var/lib/redis
+    ln -sf /etc/redis /data/config
+    ln -sf /etc/redis/redis.conf /etc
+    ln -sf /data/redis /var/lib
 
 - name: Check redis Version
   shell: sudo sh -c "/usr/local/bin/redis-server -v 1>> /data/logs/install_version.txt"
