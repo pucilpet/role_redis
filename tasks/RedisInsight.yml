@@ -19,6 +19,11 @@
     src: redisinsight.service 
     dest: /lib/systemd/system/redisinsight.service
 
+- name: Make dir sysconfig
+  shell: if [ ! $( ls | grep sysconfig) ]; then mkdir sysconfig; fi
+  args:
+    chdir: /etc
+    
 - name: Config redisinsight
   template:
     src: redisinsight-config.jinja2
