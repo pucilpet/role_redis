@@ -17,7 +17,7 @@
 - name: Config Service
   copy:
     src: redisinsight.service 
-    dest: /usr/lib/systemd/system/redisinsight.service
+    dest: /lib/systemd/system/redisinsight.service
 
 - name: Config redisinsight
   template:
