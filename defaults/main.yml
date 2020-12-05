@@ -14,7 +14,7 @@ redis_version_meta:
   "5.0":
     version: '5.0.9'
   "6.0":
-    version: '6.0.8'
+    version: '6.0.9'
   "stable":
     version: 'stable'
     
