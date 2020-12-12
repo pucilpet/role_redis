@@ -43,7 +43,6 @@
   with_items:
     - {src: /usr/local/redisinsight,dest: /data/redisinsight}
     - {src: /var/log/redisinsight,dest: /data/logs/redisinsight}
-    - {src: /var/log/redisinsight,dest: /data/redisinsight/redisinsight}
     - {src: /etc/sysconfig/redisinsight-config,dest: /data/config/redisinsight.config}
     - {src: /etc/sysconfig/redisinsight-config,dest: /data/redisinsight/redisinsight.config}
     - {src: /usr/local/redisinsight,dest: /data/redis/redisinsight}
