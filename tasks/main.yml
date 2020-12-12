@@ -44,12 +44,18 @@
     state: started
     enabled: yes
 
-# create soft link for old documentation, ln -sb 
 - name: Create a redis symbolic link
-  shell: |
-    ln -sf /etc/redis /data/config
-    ln -sf /etc/redis/redis.conf /etc
-    ln -sf /data/redis /var/lib
+  file:
+    src: '{{item.src}}'
+    dest: '{{item.dest}}'
+    state: link
+  with_items:
+    - {src: /etc/redis/redis.conf,dest: /data/redis/redis.conf}
+    - {src: /etc/redis/redis.conf,dest: /etc/redis.conf}
+    - {src: /etc/redis/redis.conf,dest: /data/config/redis.conf}
+    - {src: /var/log/redis,dest: /data/redis/log}
+    - {src: /var/log/redis,dest: /data/logs/redis}
+    - {src: /data/redis,dest: /var/lib/redis}
 
 - name: Check redis Version
   shell: sudo sh -c "/usr/local/bin/redis-server -v 1>> /data/logs/install_version.txt"
