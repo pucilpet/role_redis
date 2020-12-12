@@ -1,14 +1,7 @@
 - set_fact: redis_version="{{ redis_version_meta[redis_version].version }}"
 
-- name: Install GCC
-  yum:
-    name: 'gcc'
-  when: ansible_os_family == 'RedHat'
-
-- name: Install GCC
-  apt:
-    name: 'gcc'
-  when: ansible_os_family == 'Debian'
+- name: Install this role on {{ansible_os_family}}
+  include: "{{ansible_os_family}}.yml"
 
 - name: Download Redis Source Code from {{redis_download_url}}
   unarchive:
