@@ -24,13 +24,13 @@
     - /var/log/redis
 
 - name: Copy Redis config
-  template:
-    src: redis.conf
-    dest: /etc/redis
+  copy:
+    src: /opt/redis-{{redis_version}}/redis.conf
+    dest: /etc/redis/redis.conf
 
 - name: Set Redis default config
   lineinfile:
-    dest: /etc/redis/redis.cnf
+    dest: /etc/redis/redis.conf
     regexp: '^{{ item.name }}  *'
     firstmatch: yes
     line: "{{ item.name }}   {{item.value}}"
@@ -39,13 +39,18 @@
 
 - name: Set Redis extra config
   lineinfile:
-    dest: /etc/redis/redis.cnf
+    dest: /etc/redis/redis.conf
     regexp: '^{{ item.name }}  *'
     firstmatch: yes
     line: "{{ item.name }}   {{item.value}}"
   with_items: "{{ redis_configuration_extra }}"
   when: redis_configuration_extra is defined and redis_configuration_extra != none
 
+- name: Kill redis warning
+  shell: |
+    echo "net.core.somaxconn= 1024" >/etc/sysctl.conf
+    echo "vm.overcommit_memory = 1" >/etc/sysctl.conf
+    sysctl -p
 
 - name: Config Redis Service
   copy: 
@@ -70,7 +75,12 @@
     - {src: /var/log/redis,dest: /data/redis/log}
     - {src: /var/log/redis,dest: /data/logs/redis}
     - {src: /data/redis,dest: /var/lib/redis}
-    - {src: /opt/redis-{{redis_version}},dest: /data/redis}
+
+- name: Create a Redis symbolic link
+  file:
+    src: /opt/redis-'{{redis_version}}'
+    dest: /data/redis
+    state: link
 
 - name: Check redis Version
   shell: sudo sh -c "/usr/local/bin/redis-server -v 1>> /data/logs/install_version.txt"
