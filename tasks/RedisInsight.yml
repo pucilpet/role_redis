@@ -1,5 +1,4 @@
 # docs: https://docs.redislabs.com/latest/index.html
-
 - name: Create Redis insight Dir
   file:
     path: "{{ item }}"

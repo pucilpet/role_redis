@@ -9,17 +9,12 @@
     dest: /opt/
     remote_src: yes
 
-- name: Install redis
+- name: Install Redis
   shell: make && make install
   args:
     chdir: /opt/redis-{{redis_version}}
 
-- name: Delete redis source code
-  file:
-    path: /opt/redis-{{redis_version}}
-    state: absent
-
-- name: create redis dir
+- name: Create Redis dir
   file: 
     path: "{{item}}"
     state: directory
@@ -28,12 +23,31 @@
     - /data/redis
     - /var/log/redis
 
-- name: Copy redis config
-  copy:
+- name: Copy Redis config
+  template:
     src: redis.conf
     dest: /etc/redis
 
-- name: config Redis Service
+- name: Set Redis default config
+  lineinfile:
+    dest: /etc/redis/redis.cnf
+    regexp: '^{{ item.name }}  *'
+    firstmatch: yes
+    line: "{{ item.name }}   {{item.value}}"
+  with_items: "{{ redis_configuration_default }}"
+  when: redis_configuration_default is defined and redis_configuration_default != none
+
+- name: Set Redis extra config
+  lineinfile:
+    dest: /etc/redis/redis.cnf
+    regexp: '^{{ item.name }}  *'
+    firstmatch: yes
+    line: "{{ item.name }}   {{item.value}}"
+  with_items: "{{ redis_configuration_extra }}"
+  when: redis_configuration_extra is defined and redis_configuration_extra != none
+
+
+- name: Config Redis Service
   copy: 
     src: redis.service
     dest: /lib/systemd/system/
@@ -44,7 +58,7 @@
     state: started
     enabled: yes
 
-- name: Create a redis symbolic link
+- name: Create a Redis symbolic link
   file:
     src: '{{item.src}}'
     dest: '{{item.dest}}'
@@ -56,10 +70,10 @@
     - {src: /var/log/redis,dest: /data/redis/log}
     - {src: /var/log/redis,dest: /data/logs/redis}
     - {src: /data/redis,dest: /var/lib/redis}
+    - {src: /opt/redis-{{redis_version}},dest: /data/redis}
 
 - name: Check redis Version
   shell: sudo sh -c "/usr/local/bin/redis-server -v 1>> /data/logs/install_version.txt"
 
-# Install RedisInsight
 - include_tasks: "RedisInsight.yml"
   when: redis_install_redisinsight

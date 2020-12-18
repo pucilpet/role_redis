@@ -1,31 +1,15 @@
 # Redis version: '2.8.24', '3.0.7', '3.2.13', '4.0.14', '5.0.9', '6.0.8', 'stable'
-# Refer to http://download.redis.io/releases to maintain Redis version
-
-redis_port: "6379"
 redis_version: "5.0"
-redis_version_meta: 
-  "2.8":
-    version: '2.8.24'
-  "3.0":
-    version: '3.0.7'
-  "3.2":
-    version: '3.2.13'
-  "4.0":
-    version: '4.0.14'
-  "5.0":
-    version: '5.0.9'
-  "6.0":
-    version: '6.0.9'
-  "stable":
-    version: 'stable'
-    
-redis_download_url: http://download.redis.io/releases
 
-# RedisInsight
-redis_redisinsight_url: https://downloads.redisinsight.redislabs.com/latest/redisinsight-linux64
 redis_REDISINSIGHT_PORT: 8001
 redis_REDISINSIGHT_HOST: 127.0.0.1
 
-# Install switcher, [install redis, intall RedisInsight]
-redis_install: True
-redis_install_redisinsight: False
+redis_install_redisinsight: True
+
+redis_configuration_default:
+  - name: port
+    value: 6379
+
+redis_configuration_extras:
+#  - name: #requirepass
+#    value: 123456
