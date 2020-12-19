@@ -3,7 +3,7 @@ Description=redis
 After=network.target
 
 [Service]
-Type=forking
+Type=simple
 ExecStart=/usr/local/bin/redis-server /etc/redis/redis.conf
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s QUIT $MAINPID
