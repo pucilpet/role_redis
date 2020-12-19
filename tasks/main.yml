@@ -1,3 +1,9 @@
+- name: Install GCC for Redis6.0, refer to https://github.com/redis/redis/issues/7509
+  shell: |
+      sudo yum -y install centos-release-scl devtoolset-7 llvm-toolset-7
+      scl enable devtoolset-7 llvm-toolset-7 bash
+  when: redis_version == "6.0"
+
 - set_fact: redis_version="{{ redis_version_meta[redis_version].version }}"
 
 - name: Install this role on {{ansible_os_family}}
@@ -24,11 +30,11 @@
     - /var/log/redis
 
 - name: Copy Redis config
-  shell: cp /opt/redis-{{redis_version}}/redis.conf /etc/redis/redis.conf
+  shell: cp /opt/redis-{{redis_version}}/redis.conf /etc/redis/redis_server_0.conf
 
 - name: Set Redis default config
   lineinfile:
-    dest: /etc/redis/redis.conf
+    dest: /etc/redis/redis_server_0.conf
     regexp: '^{{ item.name }}  *'
     firstmatch: yes
     line: "{{ item.name }}   {{item.value}}"
@@ -37,14 +43,14 @@
 
 - name: Set Redis extra config
   lineinfile:
-    dest: /etc/redis/redis.conf
+    dest: /etc/redis/redis_server_0.conf
     regexp: '^{{ item.name }}  *'
     firstmatch: yes
     line: "{{ item.name }}   {{item.value}}"
   with_items: "{{ redis_configuration_extra }}"
   when: redis_configuration_extra is defined and redis_configuration_extra != none
 
-- name: Kill redis warning
+- name: Fix redis server status warning
   shell: |
     echo "net.core.somaxconn= 1024" >>/etc/sysctl.conf
     echo "vm.overcommit_memory = 1" >>/etc/sysctl.conf
@@ -67,9 +73,9 @@
     dest: '{{item.dest}}'
     state: link
   with_items:
-    - {src: /etc/redis/redis.conf,dest: /data/redis/redis.conf}
-    - {src: /etc/redis/redis.conf,dest: /etc/redis.conf}
-    - {src: /etc/redis/redis.conf,dest: /data/config/redis.conf}
+    - {src: /etc/redis/redis_server_0.conf,dest: /data/redis/redis_server_0.conf}
+    - {src: /etc/redis/redis_server_0.conf,dest: /etc/redis_server_0.conf}
+    - {src: /etc/redis/redis_server_0.conf,dest: /data/config/redis_server_0.conf}
     - {src: /var/log/redis,dest: /data/redis/log}
     - {src: /var/log/redis,dest: /data/logs/redis}
     - {src: /data/redis,dest: /var/lib/redis}
