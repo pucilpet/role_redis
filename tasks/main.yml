@@ -24,9 +24,7 @@
     - /var/log/redis
 
 - name: Copy Redis config
-  copy:
-    src: /opt/redis-{{redis_version}}/redis.conf
-    dest: /etc/redis/redis.conf
+  shell: cp /opt/redis-{{redis_version}}/redis.conf /etc/redis/redis.conf
 
 - name: Set Redis default config
   lineinfile:
