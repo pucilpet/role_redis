@@ -16,4 +16,4 @@
     shell: make install
     args:
       chdir: /opt/redis-{{redis_version}}
-  when: redis_version == "6.0.9"
+  when: redis_version == {{ redis_version_meta[6.0].version }} 
