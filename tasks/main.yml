@@ -1,29 +1,13 @@
 - set_fact: redis_version="{{ redis_version_meta[redis_version].version }}"
 
-- name: Install this role on {{ansible_os_family}}
-  include: "{{ansible_os_family}}.yml"
-
 - name: Download Redis Source Code from {{redis_download_url}}
   unarchive:
     src: "{{redis_download_url}}/redis-{{redis_version}}.tar.gz"
     dest: /opt/
     remote_src: yes
 
-- block:
-  - name: Install GCC for Redis6.0, refer to https://github.com/redis/redis/issues/7509
-    yum:
-      name: [centos-release-scl,devtoolset-7,llvm-toolset-7]
-
-  - name: make 
-    shell: scl enable devtoolset-7 llvm-toolset-7 -- make
-    args:
-      chdir: /opt/redis-{{redis_version}}
- 
-  - name: make install
-    shell: make install
-    args:
-      chdir: /opt/redis-{{redis_version}}
-  when: redis_version == "6.0.9"
+- name: Install this role on {{ansible_os_family}}
+  include: "{{ansible_os_family}}.yml"
 
 - name: Install Redis
   shell: make && make install
