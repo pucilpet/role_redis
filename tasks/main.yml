@@ -11,22 +11,25 @@
 
 - block:
   - name: Install GCC for Redis6.0, refer to https://github.com/redis/redis/issues/7509
-    yum:  
-      name: [centos-release-scl, devtoolset-7 ,llvm-toolset-7]
+    yum:
+      name: [centos-release-scl,devtoolset-7,llvm-toolset-7]
 
-  - name: Install Redis
-      command: |
-        scl enable devtoolset-7 llvm-toolset-7 -- make
-        make install
+  - name: make 
+    shell: scl enable devtoolset-7 llvm-toolset-7 -- make
     args:
       chdir: /opt/redis-{{redis_version}}
-  when: redis_version == "6.0"
+ 
+  - name: make install
+    shell: make install
+    args:
+      chdir: /opt/redis-{{redis_version}}
+  when: redis_version == "6.0.9"
 
 - name: Install Redis
   shell: make && make install
   args:
     chdir: /opt/redis-{{redis_version}}
-  when: redis_version != "6.0"
+  when: redis_version != "6.0.9"
 
 - name: Create Redis dir
   file: 
