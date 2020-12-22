@@ -2,6 +2,7 @@
   shell: |
       sudo yum -y install centos-release-scl devtoolset-7 llvm-toolset-7
       scl enable devtoolset-7 llvm-toolset-7 bash
+      source /opt/rh/devtoolset-7/enable
   when: redis_version == "6.0"
 
 - set_fact: redis_version="{{ redis_version_meta[redis_version].version }}"
