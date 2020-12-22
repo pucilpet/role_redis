@@ -10,10 +10,6 @@
     remote_src: yes
 
 - block:
-  - name: Install GCC for Redis6.0, refer to https://github.com/redis/redis/issues/7509
-    yum:
-      name: [centos-release-scl,devtoolset-7,llvm-toolset-7]
-
   - name: make 
     shell: scl enable devtoolset-7 llvm-toolset-7 -- make
     args:
