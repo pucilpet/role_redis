@@ -69,14 +69,13 @@
     state: link
   with_items:
     - {src: /etc/redis/redis_server_0.conf,dest: /data/redis/redis_server_0.conf}
+    - {src: /etc/redis/redis_server_0.conf,dest: /data/redis/redis.conf}
     - {src: /etc/redis/redis_server_0.conf,dest: /etc/redis_server_0.conf}
     - {src: /etc/redis/redis_server_0.conf,dest: /data/config/redis_server_0.conf}
     - {src: /var/log/redis,dest: /data/redis/log}
     - {src: /var/log/redis,dest: /data/logs/redis}
     - {src: /data/redis,dest: /var/lib/redis}
-
-- name: Copy Redis source file
-  shell: cp -R /opt/redis-{{redis_version}}/* /data/redis/
+    - {src: /opt/redis-{{redis_version}}/,dest: /data/redis/source}
 
 - name: Check redis Version
   shell: sudo sh -c "/usr/local/bin/redis-server -v 1>> /data/logs/install_version.txt"
