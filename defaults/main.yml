@@ -4,7 +4,7 @@ redis_version: "5.0"
 redis_REDISINSIGHT_PORT: 8001
 redis_REDISINSIGHT_HOST: 127.0.0.1
 
-redis_install_redisinsight: True
+redis_install_redisinsight: False
 
 redis_configuration_default:
   - name: port
