@@ -10,6 +10,6 @@ redis_configuration_default:
   - name: port
     value: 6379
 
-redis_configuration_extras:
+redis_configuration_extra:
 #  - name: #requirepass
 #    value: 123456
