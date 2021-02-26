@@ -30,7 +30,7 @@
 - name: Set Redis default config
   lineinfile:
     dest: /etc/redis/redis_server_0.conf
-    regexp: '^{{ item.name }}  *'
+    regexp: '^{{ item.name }}.*'
     firstmatch: yes
     line: "{{ item.name }}   {{item.value}}"
   with_items: "{{ redis_configuration_default }}"
@@ -39,7 +39,7 @@
 - name: Set Redis extra config
   lineinfile:
     dest: /etc/redis/redis_server_0.conf
-    regexp: '^{{ item.name }}  *'
+    regexp: '^{{ item.name }}.*'
     firstmatch: yes
     line: "{{{item.value}}"
   with_items: "{{ redis_configuration_extra }}"
