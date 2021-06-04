@@ -45,3 +45,7 @@
     - {src: /etc/sysconfig/redisinsight-config,dest: /data/config/redisinsight.config}
     - {src: /etc/sysconfig/redisinsight-config,dest: /data/redisinsight/redisinsight.config}
     - {src: /usr/local/redisinsight,dest: /data/redis/redisinsight}
+
+- name: Check RedisInsight version
+  shell: >
+    sudo echo "RdisInsight version:" $(curl https://docs.redislabs.com/latest/ri/release-notes/ | grep "RedisInsight v" |sed -n 1p |tr -d "</p>") |tee -a /data/logs/install_version.txt

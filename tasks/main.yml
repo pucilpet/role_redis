@@ -82,3 +82,4 @@
 
 - include_tasks: "RedisInsight.yml"
   when: redis_install_redisinsight
+
