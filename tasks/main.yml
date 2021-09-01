@@ -70,7 +70,7 @@
   with_items:
     - {src: /etc/redis/redis_server_0.conf,dest: /data/redis/redis_server_0.conf}
     - {src: /etc/redis/redis_server_0.conf,dest: /data/redis/redis.conf}
-    - {src: /etc/redis/redis_server_0.conf,dest: /etc/redis_server_0.conf}
+    - {src: /etc/redis/redis_server_0.conf,dest: /etc/redis.conf}
     - {src: /etc/redis/redis_server_0.conf,dest: /data/config/redis_server_0.conf}
     - {src: /var/log/redis,dest: /data/redis/log}
     - {src: /var/log/redis,dest: /data/logs/redis}
