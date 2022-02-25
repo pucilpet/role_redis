@@ -76,6 +76,7 @@
     - {src: /var/log/redis,dest: /data/logs/redis}
     - {src: /data/redis,dest: /var/lib/redis}
     - {src: '/opt/redis-{{redis_version}}/',dest: /data/redis/source}
+    - {src: '/usr/local/bin/redis-server',dest: /usr/bin/redis-server}
 
 - name: Check redis Version
   shell: sudo sh -c "/usr/local/bin/redis-server -v 1>> /data/logs/install_version.txt"
