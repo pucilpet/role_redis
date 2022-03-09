@@ -48,4 +48,4 @@
 
 - name: Check RedisInsight version
   shell: >
-    sudo echo "RdisInsight version:" $(curl -L https://docs.redislabs.com/latest/ri/release-notes/ | grep "RedisInsight v" |sed -n 1p |tr -d "</p>") |tee -a /data/logs/install_version.txt
+    sudo echo "RdisInsight version:" $(curl -L https://docs.redislabs.com/latest/ri/release-notes/ | grep "RedisInsight v" |sed -n 1p | awk '{print $5}'| tr -d ',') |tee -a /data/logs/install_version.txt
