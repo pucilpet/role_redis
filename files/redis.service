@@ -4,7 +4,6 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStartPre=/bin/sh -c "/bin/echo never > /sys/kernel/mm/transparent_hugepage/enabled"
 ExecStart=/usr/local/bin/redis-server /etc/redis/redis_server_0.conf
 ExecStartPre=/bin/sh -c "/bin/echo test >/root/test"
 ExecReload=/bin/kill -s HUP $MAINPID
